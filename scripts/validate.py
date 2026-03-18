@@ -17,8 +17,6 @@ Usage:
 
 import argparse
 import json
-import os
-import re
 import subprocess
 import sys
 from pathlib import Path
@@ -253,9 +251,8 @@ def main() -> int:
 
             for err in result.errors:
                 print(f"    ERROR: {err}")
-            if not args.summary:
-                for warn in result.warnings:
-                    print(f"    WARN:  {warn}")
+            for warn in result.warnings:
+                print(f"    WARN:  {warn}")
 
     # Summary
     total = len(results)
