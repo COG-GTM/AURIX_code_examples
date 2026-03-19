@@ -195,7 +195,7 @@ void initEgtmTom3phInv(void)
 
     /* 5. Other configurations */
 
-    config.cluster                = IfxEgtm_Tom_0;                       /* TOM cluster 0                            */
+    config.cluster                = IfxEgtm_Cluster_0;                    /* Cluster 0 (contains TOM0)                */
     config.subModule              = IfxEgtm_Pwm_SubModule_tom;           /* Sub module: TOM                          */
     config.alignment              = IfxEgtm_Pwm_Alignment_center;        /* Center-aligned PWM                       */
     config.syncStart              = TRUE;                                /* Start all channels after init             */
