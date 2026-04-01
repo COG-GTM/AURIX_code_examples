@@ -173,11 +173,9 @@ static Flash_ResultType injectPFlash(uint32 eccErrors, uint32 address, uint32 rc
     Ifx_PFI_ECCS expectedEccs;
     volatile uint32 wordArray[PF_PAGE_WORDS_NUM];
     volatile uint32 readData;
-    uint16 endInitSystemPassword;
     uint16 endInitCpuPassword;
 
-    /* Get the current passwords of the CPU and System WatchDog modules */
-    endInitSystemPassword   = IfxWtu_getSystemWatchdogPasswordInline();
+    /* Get the current password of the CPU WatchDog module */
     endInitCpuPassword      = IfxWtu_getCpuWatchdogPasswordInline(&MODULE_WTU.WDTCPU[0]);
 
     /* Read data from the address where to inject the ECC error */
