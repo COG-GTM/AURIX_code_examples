@@ -1,0 +1,151 @@
+<root version="2.56.0">
+    <signals>
+        <var name="g_egtmIncrEnc" type="group" offset="0" access="read-write">
+            <item-configuration>
+                <title><![CDATA[g_egtmIncrEnc]]></title>
+            </item-configuration>
+            <var name="rawPosition" type="sint32" offset="0" access="read-write" default="0">
+                <item-configuration>
+                    <title><![CDATA[rawPosition]]></title>
+                </item-configuration>
+            </var>
+            <var name="speed" type="float" offset="0" access="read-write" default="0">
+                <item-configuration>
+                    <title><![CDATA[speed]]></title>
+                </item-configuration>
+            </var>
+            <var name="turn" type="sint32" offset="0" access="read-write" default="0">
+                <item-configuration>
+                    <title><![CDATA[turn]]></title>
+                </item-configuration>
+            </var>
+        </var>
+        <var name="g_encoderEmulation" type="group" offset="0" access="read-write">
+            <item-configuration>
+                <title><![CDATA[g_encoderEmulation]]></title>
+            </item-configuration>
+            <var name="control" type="group" offset="0" access="read-write">
+                <item-configuration>
+                    <title><![CDATA[control]]></title>
+                </item-configuration>
+                <var name="run" type="uint8" offset="0" access="read-write" default="0">
+                    <item-configuration>
+                        <title><![CDATA[run]]></title>
+                    </item-configuration>
+                </var>
+                <var name="direction" type="bit" data-size="32" offset="0" access="read-write" default="0" enum="true">
+                    <item-configuration>
+                        <title><![CDATA[direction]]></title>
+                    </item-configuration>
+                    <option data="0">
+                        <item-configuration>
+                            <value><![CDATA[IfxEgtm_Spe_Direction_fwd]]></value>
+                            <title><![CDATA[IfxEgtm_Spe_Direction_fwd]]></title>
+                        </item-configuration>
+                    </option>
+                    <option data="1">
+                        <item-configuration>
+                            <value><![CDATA[IfxEgtm_Spe_Direction_bwd]]></value>
+                            <title><![CDATA[IfxEgtm_Spe_Direction_bwd]]></title>
+                        </item-configuration>
+                    </option>
+                </var>
+                <var name="rawPosition" type="sint32" offset="0" access="read-write" default="0">
+                    <item-configuration>
+                        <title><![CDATA[rawPosition]]></title>
+                    </item-configuration>
+                </var>
+                <var name="speed" type="float" offset="0" access="read-write" default="0">
+                    <item-configuration>
+                        <title><![CDATA[speed]]></title>
+                    </item-configuration>
+                </var>
+            </var>
+            <var name="status" type="group" offset="0" access="read-write">
+                <item-configuration>
+                    <title><![CDATA[status]]></title>
+                </item-configuration>
+                <var name="speed" type="float" offset="0" access="read-write" default="0">
+                    <item-configuration>
+                        <title><![CDATA[speed]]></title>
+                    </item-configuration>
+                </var>
+                <var name="rawPosition" type="sint32" offset="0" access="read-write" default="0">
+                    <item-configuration>
+                        <title><![CDATA[rawPosition]]></title>
+                    </item-configuration>
+                </var>
+                <var name="direction" type="bit" data-size="32" offset="0" access="read-write" default="0" enum="true">
+                    <item-configuration>
+                        <title><![CDATA[direction]]></title>
+                    </item-configuration>
+                    <option data="0">
+                        <item-configuration>
+                            <value><![CDATA[IfxEgtm_Spe_Direction_fwd]]></value>
+                            <title><![CDATA[IfxEgtm_Spe_Direction_fwd]]></title>
+                        </item-configuration>
+                    </option>
+                    <option data="1">
+                        <item-configuration>
+                            <value><![CDATA[IfxEgtm_Spe_Direction_bwd]]></value>
+                            <title><![CDATA[IfxEgtm_Spe_Direction_bwd]]></title>
+                        </item-configuration>
+                    </option>
+                </var>
+            </var>
+        </var>
+    </signals>
+    <layout>
+        <group layout-item="false">
+            <lineEdit auto-connect="g_encoderEmulation.control.speed">
+                <item-configuration>
+                    <title><![CDATA[Speed [rad/s]]]></title>
+                </item-configuration>
+            </lineEdit>
+            <comboBox auto-connect="g_encoderEmulation.control.direction">
+                <item-configuration>
+                    <title><![CDATA[Direction]]></title>
+                </item-configuration>
+            </comboBox>
+            <lineEdit auto-connect="g_encoderEmulation.control.rawPosition">
+                <item-configuration>
+                    <title><![CDATA[Raw Position [digit]]]></title>
+                </item-configuration>
+            </lineEdit>
+        </group>
+        <group layout-item="false">
+            <lineEdit auto-connect="g_encoderEmulation.status.speed">
+                <item-configuration>
+                    <title><![CDATA[Speed [rad/s]]]></title>
+                </item-configuration>
+            </lineEdit>
+            <comboBox auto-connect="g_encoderEmulation.status.direction">
+                <item-configuration>
+                    <title><![CDATA[Direction]]></title>
+                </item-configuration>
+            </comboBox>
+            <lineEdit auto-connect="g_encoderEmulation.status.rawPosition">
+                <item-configuration>
+                    <title><![CDATA[Raw Position [digit]]]></title>
+                </item-configuration>
+            </lineEdit>
+        </group>
+        <group layout-item="false">
+            <graph buffer-depth="6000" multi-channel="false" legend-pos="top" division-x="10" division-y="10" offset-y="5" time-per-division-x="1" unit-x="s" x-axis-visible="false" control-visible="true">
+                <channel auto-connect="g_encoderEmulation.status.rawPosition" enabled="defined-by-connection" offset-x="0" offset-y="0" unit-per-division-y="2000" pen-width="1" color="red" y-axis-visible="false"/>
+                <channel data-in="g_encoderEmulation.control.rawPosition" enabled="defined-by-connection" offset-x="0" offset-y="0" unit-per-division-y="2000" pen-width="1" color="blue" y-axis-visible="false"/>
+            </graph>
+        </group>
+        <pushButton>
+            <item-configuration>
+                <title><![CDATA[Setup connection]]></title>
+            </item-configuration>
+        </pushButton>
+    </layout>
+    <debugBox elf-path="../TriCore Debug (GCC)/iLLD_TC4D7_LK_ADS_EGTM_Incremental_Encoder_Interface_1.elf" watches="g_egtmIncrEnc;g_encoderEmulation" com-interface-id="" title="" id=""/>
+    <interface/>
+    <interface>
+        <port plugin="PCom_DAS::DAS" connect="true"/>
+    </interface>
+    <config/>
+</root>
